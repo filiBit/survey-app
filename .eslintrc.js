@@ -1,19 +1,28 @@
 module.exports = {
   env: {
-    commonjs: true,
+    browser: true,
     es2021: true,
     node: true,
   },
   extends: [
-    'airbnb-base',
+    'plugin:react/recommended',
+    'airbnb',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
     ecmaVersion: 13,
+    sourceType: 'module',
   },
   plugins: [
+    'react',
     '@typescript-eslint',
   ],
   rules: {
+    'react/jsx-filename-extension': 'off',
+    'import/extensions': 'off',
+    'import/no-unresolved': 'off',
   },
 };
