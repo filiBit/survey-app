@@ -11,8 +11,13 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
   },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js'],
+  },
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: './frontend/template.html',
+    }),
   ],
   devServer: {
     static: './dev-build',
