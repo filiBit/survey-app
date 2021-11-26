@@ -20,6 +20,7 @@ module.exports = {
     'react',
     '@typescript-eslint',
   ],
+  ignorePatterns: ['build', 'dev-build'],
   rules: {
     'react/jsx-filename-extension': 'off',
     'import/extensions': 'off',
