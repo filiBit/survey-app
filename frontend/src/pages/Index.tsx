@@ -4,6 +4,7 @@ import {
 } from '../../models';
 import api from '../api';
 import BasicInput from '../components/BasicInput';
+import MainLayout from '../components/Layouts/MainLayout';
 import validateAnswers from '../helpers/validateAnswers';
 import { useAnswersInitialization, useSurveyFromApi, useValidationErrorsUpdate } from '../hooks';
 
@@ -51,8 +52,7 @@ const HomePage = function HomePage({ updateIsSubmitted }: {updateIsSubmitted: (v
   };
 
   return (
-    <div className="w-full lg:max-w-3xl p-5 lg:p-10 mx-auto bg-white">
-      <h1 className="text-center text-5xl mb-10">{survey?.attributes.title}</h1>
+    <MainLayout title={survey?.attributes.title}>
       <div className="text-2xl my-10" dangerouslySetInnerHTML={{ __html: survey?.attributes.description as string }} />
       {answers && survey?.attributes.questions.map((q) => (
         <BasicInput
@@ -75,7 +75,7 @@ const HomePage = function HomePage({ updateIsSubmitted }: {updateIsSubmitted: (v
       && (
       <div className="my-10">
         {formValidationErrorMessages.errors?.map((fvem) => (
-          <div key={fvem.detail} className="mt-2">
+          <div key={fvem.title || fvem?.source?.pointer} className="my-5">
             <p className="text-red-600 text-xl">{fvem.title ? fvem.title : `Invalid answer on: ${fvem?.source?.pointer}`}</p>
             <p className="text-red-600 text-l">{fvem.detail}</p>
           </div>
@@ -83,7 +83,7 @@ const HomePage = function HomePage({ updateIsSubmitted }: {updateIsSubmitted: (v
         <p />
       </div>
       )}
-    </div>
+    </MainLayout>
   );
 };
 
