@@ -3,7 +3,7 @@ export interface ApiGenericError {
     detail: string;
   }
 
-export interface ApiValidationError
+export interface ValidationError
     {
       source: { pointer: string };
       detail: string;

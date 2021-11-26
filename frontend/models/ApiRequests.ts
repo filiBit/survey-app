@@ -1,5 +1,5 @@
-export interface ApiSurveyAnswersRequest {
-    data: Omit<SurveyAnswers, 'id' | 'relationships'>
-  }
+import { SurveyAnswers } from '.';
 
-export type ApiPostRequest = ApiSurveyAnswersRequest
+export type ApiPostRequest = {
+  data: Omit<SurveyAnswers, 'id' | 'relationships'>
+}
