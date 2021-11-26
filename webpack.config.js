@@ -25,7 +25,17 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx$/,
+        test: /\.ts/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [['@babel/preset-env', { useBuiltIns: 'usage', corejs: { version: '3.19.1' } }], '@babel/preset-typescript'],
+          },
+        },
+      },
+      {
+        test: /\.tsx/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
