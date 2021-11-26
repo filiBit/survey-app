@@ -1,7 +1,7 @@
 import React from 'react';
 import MainLayout from '../components/Layouts/MainLayout';
 
-const SuccessPage = function SuccessPage({ updateIsSubmitted }: {updateIsSubmitted: (value: boolean) => void}) {
+const SuccessPage = function SuccessPage({ updateIsSubmitted }: PageProperties) {
   const retakeSurvey = () => {
     updateIsSubmitted(false);
   };
@@ -15,3 +15,7 @@ const SuccessPage = function SuccessPage({ updateIsSubmitted }: {updateIsSubmitt
 };
 
 export default SuccessPage;
+
+interface PageProperties {
+  updateIsSubmitted: (value: boolean) => void;
+}

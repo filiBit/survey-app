@@ -3,12 +3,12 @@ import {
   Answer, ValidationError, Survey, ApiErrorsResponse, ApiPostResponse, ApiPostRequest,
 } from '../../models';
 import api from '../api';
-import BasicInput from '../components/BasicInput';
+import BasicInput from '../components/core/BasicInput';
 import MainLayout from '../components/Layouts/MainLayout';
 import validateAnswers from '../helpers/validateAnswers';
 import { useAnswersInitialization, useSurveyFromApi, useValidationErrorsUpdate } from '../hooks';
 
-const HomePage = function HomePage({ updateIsSubmitted }: {updateIsSubmitted: (value: boolean) => void}) {
+const HomePage = function HomePage({ updateIsSubmitted }: PageProperties) {
   const [survey, setSurvey] = useState<Survey | null>(null);
   const [errorResponse, setErrorResponse] = useState<ApiErrorsResponse | null>(null);
   const [formValidationErrorMessages, setFormValidationErrorMessages] = useState<ApiErrorsResponse>();
@@ -88,3 +88,7 @@ const HomePage = function HomePage({ updateIsSubmitted }: {updateIsSubmitted: (v
 };
 
 export default HomePage;
+
+interface PageProperties {
+  updateIsSubmitted: (value: boolean) => void
+}

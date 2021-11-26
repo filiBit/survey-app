@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { Question, ValidationError } from '../../models';
-import { useErrorDetection } from '../hooks';
+import { Question, ValidationError } from '../../../models';
+import { useErrorDetection } from '../../hooks';
 
 const BasicInput = function BasicInput({
-  question, value = '', updateValue, validationErrors,
-}: {question: Question, value: string|number, updateValue: (questionId: string, updatedValue: string | number) => void, validationErrors: ValidationError[]}) {
+  question,
+  value = '',
+  updateValue,
+  validationErrors,
+}: ComponentProperties) {
   const [error, setError] = useState<ValidationError>();
   const [isTouched, setIsTouched] = useState<boolean>(false);
 
@@ -35,3 +38,10 @@ const BasicInput = function BasicInput({
 };
 
 export default BasicInput;
+
+interface ComponentProperties {
+  question: Question;
+  value: string|number;
+  updateValue: (questionId: string, updatedValue: string | number) => void;
+   validationErrors: ValidationError[];
+}
