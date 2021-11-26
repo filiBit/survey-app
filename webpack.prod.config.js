@@ -2,13 +2,13 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     index: './frontend/src/index.tsx',
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'build'),
     clean: true,
   },
   resolve: {
@@ -19,9 +19,6 @@ module.exports = {
       template: './frontend/template.html',
     }),
   ],
-  devServer: {
-    static: './dev-build',
-  },
   module: {
     rules: [
       {
