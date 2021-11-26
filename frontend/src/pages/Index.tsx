@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import {
-  Answer, ValidationError, Survey,
-} from '../../models';
+import React, { useState } from 'react';
+import { Answer, ValidationError, Survey } from '../../models';
 import BasicInput from '../components/BasicInput';
 import validateAnswers from '../helpers/validateAnswers';
+import { useAnswersInitialization, useValidationErrorsUpdate } from '../hooks';
 
 const HomePage = function HomePage({ updateIsSubmitted }: {updateIsSubmitted: (value: boolean) => void}) {
   const [survey, setSurvey] = useState<Survey>({
@@ -38,17 +37,11 @@ const HomePage = function HomePage({ updateIsSubmitted }: {updateIsSubmitted: (v
 
   const [validationErrors, setValidationErrors] = useState<ValidationError[]>([]);
 
-  useEffect(() => {
-    setAnswers(survey.attributes.questions.map((q) => ({
-      questionId: q.questionId,
-      answer: q.questionType == 'string' ? '' : 0,
-    })));
-  }, [survey.id]);
+  useAnswersInitialization({ setAnswers, survey });
 
-  useEffect(() => {
-    const newValidationErrors = validateAnswers(answers, survey.attributes.questions);
-    setValidationErrors(newValidationErrors);
-  }, [answers]);
+  useValidationErrorsUpdate({
+    validateAnswers, answers, questions: survey.attributes.questions, setValidationErrors,
+  });
 
   const updateValue = (questionId: string, value: string | number) => {
     setAnswers(answers?.map((a) => {

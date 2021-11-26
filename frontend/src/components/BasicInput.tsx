@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Question, ValidationError } from '../../models';
+import { useErrorDetection } from '../hooks';
 
 const BasicInput = function BasicInput({
   question, value = '', updateValue, validationErrors,
@@ -7,9 +8,9 @@ const BasicInput = function BasicInput({
   const [error, setError] = useState<ValidationError>();
   const [isTouched, setIsTouched] = useState<boolean>(false);
 
-  useEffect(() => {
-    setError(validationErrors.find((ve) => ve.source.pointer == question.questionId));
-  }, [value, validationErrors.length]);
+  useErrorDetection({
+    setError, validationErrors, question, value,
+  });
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value: newValue } = event.target;
