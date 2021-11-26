@@ -1,4 +1,4 @@
-import { ApiErrorsResponse, ApiPostRequest } from '../../models';
+import { Api, ApiErrorsResponse, ApiPostRequest } from '../../models';
 import data from './data';
 import buildApiV1 from './v1';
 
@@ -25,7 +25,7 @@ export default {
     }
     return JSON.stringify(response);
   },
-};
+} as Api;
 
 function makeInternalServerErrorResponse(): ApiErrorsResponse {
   return {

@@ -6,3 +6,4 @@ export * from './Question';
 export * from './Relationships';
 export * from './Survey';
 export * from './SurveyAnswers';
+export * from './Api';

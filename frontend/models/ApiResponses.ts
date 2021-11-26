@@ -10,7 +10,7 @@ export interface ApiSurveyAnswersResponse {
     }
 
 export interface ApiGetResponse {
-      data: Survey | ApiErrorsResponse;
+      data: Survey & ApiErrorsResponse;
     }
 
 export type ApiPostResponse = ApiErrorsResponse | ApiSurveyAnswersResponse
