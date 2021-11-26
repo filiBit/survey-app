@@ -35,5 +35,6 @@ module.exports = {
     'no-param-reassign': 'off',
     'no-unused-vars': 'warn',
     'import/prefer-default-export': 'off',
+    'react/require-default-props': 'off',
   },
 };
