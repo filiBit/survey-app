@@ -30,5 +30,9 @@ module.exports = {
     'no-use-before-define': 'off',
     'max-len': 'warn',
     eqeqeq: 'off',
+    'no-plusplus': 'off',
+    'no-continue': 'off',
+    'no-param-reassign': 'off',
+    'no-unused-vars': 'warn',
   },
 };
