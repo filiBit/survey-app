@@ -1,7 +1,7 @@
-import { Answer, ApiValidationError, Question } from '../../models';
+import { Answer, ValidationError, Question } from '../../models';
 
-export default function makeValidationErrors(answers: Answer[], questions: Question[]): ApiValidationError[] {
-  const errors: ApiValidationError[] = [];
+export default function makeValidationErrors(answers: Answer[], questions: Question[]): ValidationError[] {
+  const errors: ValidationError[] = [];
 
   for (let i = 0; i < answers.length; i++) {
     const a = answers[i];
@@ -60,7 +60,7 @@ export default function makeValidationErrors(answers: Answer[], questions: Quest
 }
 
 function isViolatesRequired(question: Question, answer: unknown) {
-  return question.required && (answer == null || answer == '');
+  return question.required && (answer === null || answer === '');
 }
 
 function isViolatesString(question: Question, answer: unknown) {
@@ -68,7 +68,7 @@ function isViolatesString(question: Question, answer: unknown) {
 }
 
 function isViolatesInteger(question: Question, answer: unknown) {
-  return (question.questionType == 'integer' && (typeof (answer) !== 'number' || Number.isInteger(answer)));
+  return (question.questionType == 'integer' && (typeof (answer) != 'number' || Number.isInteger(answer) === false));
 }
 
 function isViolatesMinValue(question: Question, answer: number) {
