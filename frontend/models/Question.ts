@@ -4,7 +4,7 @@ export interface Question {
   label: string;
   required: boolean;
   attributes: null | {
-      min: number,
-      max: number
+    min: number,
+    max: number
   };
 }

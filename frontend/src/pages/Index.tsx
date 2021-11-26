@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
-  Answer, ValidationError, Survey, ApiGetResponse, ApiErrorsResponse,
+  Answer, ValidationError, Survey, ApiErrorsResponse, ApiPostResponse, ApiPostRequest,
 } from '../../models';
 import api from '../api';
 import BasicInput from '../components/BasicInput';
@@ -10,7 +10,7 @@ import { useAnswersInitialization, useSurveyFromApi, useValidationErrorsUpdate }
 const HomePage = function HomePage({ updateIsSubmitted }: {updateIsSubmitted: (value: boolean) => void}) {
   const [survey, setSurvey] = useState<Survey | null>(null);
   const [errorResponse, setErrorResponse] = useState<ApiErrorsResponse | null>(null);
-  const [isFormTouched, setIsFormTouched] = useState<boolean>(false);
+  const [formValidationErrorMessages, setFormValidationErrorMessages] = useState<ApiErrorsResponse>();
 
   useSurveyFromApi({
     api, survey, errorResponse, setErrorResponse, setSurvey,
@@ -36,7 +36,18 @@ const HomePage = function HomePage({ updateIsSubmitted }: {updateIsSubmitted: (v
   };
 
   const submitForm = () => {
-    updateIsSubmitted(true);
+    const requestPayload: ApiPostRequest = {
+      data: {
+        type: 'surveyAnswers',
+        attributes: {
+          answers,
+        },
+      },
+    };
+    const responseString = api.post((survey as Survey).id, requestPayload);
+    const response = JSON.parse(responseString) as ApiPostResponse;
+    if (response.errors) setFormValidationErrorMessages(response);
+    else updateIsSubmitted(true);
   };
 
   return (
@@ -54,12 +65,24 @@ const HomePage = function HomePage({ updateIsSubmitted }: {updateIsSubmitted: (v
       ))}
       <button
         disabled={survey == null || errorResponse != null}
-        className="py-2 px-4 text-xl bg-blue-700 text-gray-50 rounded-md"
+        className="block py-2 px-4 text-xl bg-blue-700 text-gray-50 rounded-md my-10"
         type="button"
         onClick={submitForm}
       >
         Submit
       </button>
+      {formValidationErrorMessages
+      && (
+      <div className="my-10">
+        {formValidationErrorMessages.errors?.map((fvem) => (
+          <div key={fvem.detail} className="mt-2">
+            <p className="text-red-600 text-xl">{fvem.title ? fvem.title : `Invalid answer on: ${fvem?.source?.pointer}`}</p>
+            <p className="text-red-600 text-l">{fvem.detail}</p>
+          </div>
+        ))}
+        <p />
+      </div>
+      )}
     </div>
   );
 };

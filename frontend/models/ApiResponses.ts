@@ -2,15 +2,15 @@ import { Survey, SurveyAnswers } from '.';
 import { ApiGenericError, ValidationError } from './ApiErrors';
 
 export interface ApiErrorsResponse {
-      errors: ApiGenericError[] | ValidationError[]
-    }
+  errors?: Array<ApiGenericError & ValidationError>
+}
 
 export interface ApiSurveyAnswersResponse {
-      data: SurveyAnswers
-    }
+  data?: SurveyAnswers
+}
 
 export interface ApiGetResponse {
-      data: Survey & ApiErrorsResponse;
-    }
+  data?: Survey | ApiErrorsResponse;
+}
 
-export type ApiPostResponse = ApiErrorsResponse | ApiSurveyAnswersResponse
+export type ApiPostResponse = ApiErrorsResponse & ApiSurveyAnswersResponse
