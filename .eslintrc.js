@@ -34,5 +34,6 @@ module.exports = {
     'no-continue': 'off',
     'no-param-reassign': 'off',
     'no-unused-vars': 'warn',
+    'import/prefer-default-export': 'off',
   },
 };
