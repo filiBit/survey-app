@@ -30,7 +30,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [['@babel/preset-env', { useBuiltIns: 'entry' }], '@babel/preset-react', '@babel/preset-typescript'],
+            presets: [['@babel/preset-env', { useBuiltIns: 'usage', corejs: { version: '3.19.1' } }], '@babel/preset-react', '@babel/preset-typescript'],
           },
         },
       },
