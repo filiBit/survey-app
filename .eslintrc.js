@@ -25,5 +25,10 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
     'import/no-extraneous-dependencies': 'off',
+    'no-console': 'off',
+    'no-undef': 'off',
+    'no-use-before-define': 'off',
+    'max-len': 'warn',
+    eqeqeq: 'off',
   },
 };
