@@ -17,7 +17,11 @@ const BasicInput = function BasicInput({
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value: newValue } = event.target;
-    const newValueParsed = question.questionType == 'integer' ? Number(newValue) : newValue;
+
+    const newValueParsed = question.questionType === 'integer'
+    ? (newValue === '' ? '' : Number(newValue))
+    : newValue;
+
     updateValue(question.questionId, newValueParsed);
     setIsTouched(true);
   }
