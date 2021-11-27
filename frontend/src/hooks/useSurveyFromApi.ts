@@ -10,8 +10,8 @@ export function useSurveyFromApi({
     if (survey == null && errorResponse == null) {
       const surveyStringResponse = api.get();
       const surveyResponse = JSON.parse(surveyStringResponse) as ApiGetResponse;
-      setErrorResponse(surveyResponse.data.errors ? surveyResponse.data : null);
-      setSurvey(errorResponse ? null : surveyResponse.data);
+      setErrorResponse(surveyResponse?.data?.errors ? surveyResponse.data as ApiErrorsResponse : null);
+      setSurvey(errorResponse ? null : surveyResponse.data as Survey);
     }
   }, [survey]);
 }

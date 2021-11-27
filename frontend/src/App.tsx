@@ -11,15 +11,11 @@ const App = function App() {
 
   useAppNavigation({ isFormSubmitted, navigate });
 
-  const updateIsSubmitted = (isSubmited: boolean) => {
-    setIsFormSubmitted(isSubmited);
-  };
-
   return (
     <div>
       <Routes>
-        <Route key="1" path="/" element={<HomePage updateIsSubmitted={updateIsSubmitted} />} />
-        <Route key="2" path="/success" element={<SuccessPage updateIsSubmitted={updateIsSubmitted} />} />
+        <Route path="/" element={<HomePage updateIsSubmitted={setIsFormSubmitted} />} />
+        <Route path="/success" element={<SuccessPage updateIsSubmitted={setIsFormSubmitted} />} />
       </Routes>
     </div>
   );

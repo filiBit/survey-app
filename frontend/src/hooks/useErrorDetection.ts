@@ -8,7 +8,7 @@ export function useErrorDetection({
   value,
 }: HookParameters) {
   useEffect(() => {
-    setError(validationErrors.find((ve) => ve.source.pointer == question.questionId));
+    setError(validationErrors.find((ve) => ve.source?.pointer == question.questionId));
   }, [value, validationErrors.length]);
 }
 
