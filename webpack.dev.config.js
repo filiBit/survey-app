@@ -1,29 +1,33 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+var webpack = require('webpack')
 
 module.exports = {
   mode: 'development',
   entry: {
-    index: './frontend/src/index.tsx',
+    index: './frontend/src/index.tsx'
   },
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'build'),
-    clean: true,
+    clean: true
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: ['.ts', '.tsx', '.js']
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './frontend/template.html',
+      template: './frontend/template.html'
     }),
+    new webpack.ProvidePlugin({
+      React: 'react'
+    })
   ],
   devServer: {
     static: './dev-build',
     historyApiFallback: {
-      index: '/',
-    },
+      index: '/'
+    }
   },
   module: {
     rules: [
@@ -33,9 +37,12 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [['@babel/preset-env', { useBuiltIns: 'usage', corejs: { version: '3.19.1' } }], '@babel/preset-typescript'],
-          },
-        },
+            presets: [
+              ['@babel/preset-env', { useBuiltIns: 'usage', corejs: { version: '3.19.1' } }],
+              '@babel/preset-typescript'
+            ]
+          }
+        }
       },
       {
         test: /\.tsx/,
@@ -43,14 +50,18 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [['@babel/preset-env', { useBuiltIns: 'usage', corejs: { version: '3.19.1' } }], '@babel/preset-react', '@babel/preset-typescript'],
-          },
-        },
+            presets: [
+              ['@babel/preset-env', { useBuiltIns: 'usage', corejs: { version: '3.19.1' } }],
+              '@babel/preset-react',
+              '@babel/preset-typescript'
+            ]
+          }
+        }
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader', 'postcss-loader'],
-      },
-    ],
-  },
-};
+        use: ['style-loader', 'css-loader', 'postcss-loader']
+      }
+    ]
+  }
+}
