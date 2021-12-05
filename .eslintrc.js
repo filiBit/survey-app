@@ -1,41 +1,33 @@
 module.exports = {
+  root: true,
   env: {
     browser: true,
     es2021: true,
-    node: true,
+    node: true
+  },
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaVersion: 13,
+    sourceType: "module"
   },
   extends: [
-    'plugin:react/recommended',
-    'airbnb',
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
   ],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 13,
-    sourceType: 'module',
+  settings: {
+    react: {
+      version: "detect"
+    }
   },
-  plugins: [
-    'react',
-    '@typescript-eslint',
-  ],
-  ignorePatterns: ['build', 'dev-build'],
+  plugins: ["react-hooks", "@typescript-eslint"],
   rules: {
-    'react/jsx-filename-extension': 'off',
-    'import/extensions': 'off',
-    'import/no-unresolved': 'off',
-    'import/no-extraneous-dependencies': 'off',
-    'no-console': 'off',
-    'no-undef': 'off',
-    'no-use-before-define': 'off',
-    'max-len': 'warn',
-    eqeqeq: 'off',
-    'no-plusplus': 'off',
-    'no-continue': 'off',
-    'no-param-reassign': 'off',
-    'no-unused-vars': 'warn',
-    'import/prefer-default-export': 'off',
-    'react/require-default-props': 'off',
-  },
-};
+    "@typescript-eslint/no-var-requires": "off",
+    "prettier/prettier": "error",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  }
+}
