@@ -1,5 +1,5 @@
-import { Survey, SurveyAnswers } from '.';
-import { ApiGenericError, ValidationError } from './ApiErrors';
+import { Survey, SurveyAnswers } from '.'
+import { ApiGenericError, ValidationError } from './ApiErrors'
 
 export interface ApiErrorsResponse {
   errors?: Array<ApiGenericError & ValidationError>
@@ -10,7 +10,7 @@ export interface ApiSurveyAnswersResponse {
 }
 
 export interface ApiGetResponse {
-  data?: Survey & ApiErrorsResponse;
+  data?: Survey & ApiErrorsResponse
 }
 
 export type ApiPostResponse = ApiErrorsResponse & ApiSurveyAnswersResponse

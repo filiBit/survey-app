@@ -1,15 +1,15 @@
-import 'tailwindcss/tailwind.css';
-import React, { useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router';
-import HomePage from './pages/Index';
-import SuccessPage from './pages/Success';
-import { useAppNavigation } from './hooks';
+import 'tailwindcss/tailwind.css'
+import { useState } from 'react'
+import { Route, Routes, useNavigate } from 'react-router'
+import HomePage from './pages/Index'
+import SuccessPage from './pages/Success'
+import { useAppNavigation } from './hooks'
 
 const App = function App() {
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-  const navigate = useNavigate();
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false)
+  const navigate = useNavigate()
 
-  useAppNavigation({ isFormSubmitted, navigate });
+  useAppNavigation({ isFormSubmitted, navigate })
 
   return (
     <div>
@@ -18,7 +18,7 @@ const App = function App() {
         <Route path="/success" element={<SuccessPage updateIsSubmitted={setIsFormSubmitted} />} />
       </Routes>
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App

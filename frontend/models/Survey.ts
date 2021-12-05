@@ -1,11 +1,11 @@
-import { Question } from '.';
+import { Question } from '.'
 
 export interface Survey {
-    type: string;
-    id: string;
-    attributes: {
-        title: string;
-        description: string;
-        questions: Question[];
-    }
+  type: string
+  id: string
+  attributes: {
+    title: string
+    description: string
+    questions: Question[]
+  }
 }
